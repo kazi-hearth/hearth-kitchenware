@@ -7,748 +7,274 @@
   <meta name="description" content="The Stoveside Set — 5-piece silicone kitchen bundle designed for people who cook seriously and care how their kitchen looks.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-
   <style>
     :root {
-      --cream:    #F6F1E8;
-      --linen:    #E8E0D0;
-      --ink:      #2C2C2A;
-      --clay:     #C4724A;
-      --clay-dim: rgba(196,114,74,0.12);
-      --warm-grey:#8A8780;
-      --sage:     #5A6B52;
-      --terra:    #8A6E5A;
+      --cream:     #F6F1E8;
+      --linen:     #E8E0D0;
+      --ink:       #2C2C2A;
+      --clay:      #C4724A;
+      --warm-grey: #8A8780;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--ink); font-family: 'DM Mono', monospace; overflow-x: hidden; }
 
-    body {
-      background: var(--cream);
-      color: var(--ink);
-      font-family: 'DM Mono', monospace;
-      overflow-x: hidden;
-    }
-
-    /* ── NOISE TEXTURE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 999;
-      opacity: 0.4;
-    }
-
-    /* ── NAV ── */
+    /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 24px 48px;
-      background: rgba(246,241,232,0.88);
-      backdrop-filter: blur(12px);
+      background: rgba(246,241,232,0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s, padding 0.3s;
     }
-    nav.scrolled {
-      border-color: var(--linen);
-      padding: 16px 48px;
-    }
-
+    nav.scrolled { border-color: var(--linen); padding: 16px 48px; }
     .nav-wordmark {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 18px;
-      letter-spacing: 0.35em;
-      color: var(--ink);
-      text-transform: uppercase;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 17px;
+      letter-spacing: 0.3em; color: var(--ink); text-transform: uppercase;
+      text-decoration: none; display: flex; align-items: center; gap: 10px;
     }
-    .nav-wordmark .flame {
-      width: 10px;
-      height: 18px;
-      flex-shrink: 0;
-    }
-
     .nav-cta {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cream);
-      background: var(--clay);
-      padding: 10px 24px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--cream); background: var(--clay);
+      padding: 10px 24px; text-decoration: none;
+      transition: background 0.2s, transform 0.15s; display: inline-block;
     }
     .nav-cta:hover { background: var(--ink); transform: translateY(-1px); }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      background: var(--ink);
-      position: relative;
-      overflow: hidden;
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--ink); position: relative; overflow: hidden;
     }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--clay), transparent);
-    }
-
-    /* radial glow */
     .hero-glow {
-      position: absolute;
-      top: -20%; right: -10%;
-      width: 70vw; height: 70vw;
+      position: absolute; top: -20%; right: -10%; width: 70vw; height: 70vw;
       background: radial-gradient(circle, rgba(196,114,74,0.1) 0%, transparent 65%);
       pointer-events: none;
     }
-
+    .hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--clay), transparent);
+    }
     .hero-left {
-      padding: 160px 80px 100px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      z-index: 1;
+      padding: 160px 80px 100px; display: flex; flex-direction: column;
+      justify-content: center; z-index: 1;
     }
-
     .hero-eyebrow {
-      font-size: 9px;
-      letter-spacing: 0.4em;
-      color: var(--clay);
-      text-transform: uppercase;
-      margin-bottom: 36px;
-      opacity: 0;
-      animation: riseIn 0.9s ease 0.3s forwards;
+      font-size: 9px; letter-spacing: 0.4em; color: var(--clay);
+      text-transform: uppercase; margin-bottom: 36px;
+      opacity: 0; animation: riseIn 0.9s ease 0.3s forwards;
     }
-
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(64px, 6.5vw, 104px);
-      font-weight: 300;
-      line-height: 0.9;
-      letter-spacing: -0.02em;
-      color: var(--cream);
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: riseIn 0.9s ease 0.5s forwards;
+      font-size: clamp(60px, 6.5vw, 100px);
+      font-weight: 300; line-height: 0.92; letter-spacing: -0.02em;
+      color: var(--cream); margin-bottom: 40px;
+      opacity: 0; animation: riseIn 0.9s ease 0.5s forwards;
     }
-    .hero-title em {
-      font-style: italic;
-      color: var(--clay);
-    }
-
+    .hero-title em { font-style: italic; color: var(--clay); }
     .hero-tagline {
-      font-family: 'Fraunces', serif;
-      font-weight: 200;
-      font-style: italic;
-      font-size: 18px;
-      color: rgba(246,241,232,0.5);
-      line-height: 1.6;
-      margin-bottom: 56px;
-      max-width: 360px;
-      opacity: 0;
-      animation: riseIn 0.9s ease 0.7s forwards;
+      font-family: 'Fraunces', serif; font-weight: 200; font-style: italic;
+      font-size: 18px; color: rgba(246,241,232,0.5); line-height: 1.65;
+      margin-bottom: 56px; max-width: 360px;
+      opacity: 0; animation: riseIn 0.9s ease 0.7s forwards;
     }
-
     .hero-actions {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      opacity: 0;
-      animation: riseIn 0.9s ease 0.9s forwards;
+      display: flex; gap: 24px; align-items: center; flex-wrap: wrap;
+      opacity: 0; animation: riseIn 0.9s ease 0.9s forwards;
     }
-
     .btn-primary {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cream);
-      background: var(--clay);
-      padding: 16px 36px;
-      text-decoration: none;
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--cream); background: var(--clay);
+      padding: 16px 36px; text-decoration: none; display: inline-block;
       transition: background 0.2s, transform 0.15s;
-      display: inline-block;
     }
     .btn-primary:hover { background: #b5623b; transform: translateY(-2px); }
-
     .btn-ghost {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(246,241,232,0.45);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(246,241,232,0.2);
-      padding-bottom: 2px;
-      transition: color 0.2s, border-color 0.2s;
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(246,241,232,0.4);
+      text-decoration: none; border-bottom: 1px solid rgba(246,241,232,0.2);
+      padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;
     }
-    .btn-ghost:hover { color: var(--cream); border-color: rgba(246,241,232,0.6); }
+    .btn-ghost:hover { color: rgba(246,241,232,0.85); border-color: rgba(246,241,232,0.5); }
 
+    /* HERO RIGHT CARD */
     .hero-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 160px 60px 100px;
-      position: relative;
-      z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 160px 60px 100px; z-index: 1;
     }
-
-    /* Product visual box */
     .hero-product-card {
-      width: 100%;
-      max-width: 400px;
-      background: rgba(246,241,232,0.04);
-      border: 1px solid rgba(246,241,232,0.08);
-      padding: 48px 40px;
-      opacity: 0;
-      animation: riseIn 1s ease 0.6s forwards;
+      width: 100%; max-width: 400px;
+      background: rgba(246,241,232,0.04); border: 1px solid rgba(246,241,232,0.08);
+      padding: 40px; opacity: 0; animation: riseIn 1s ease 0.6s forwards;
     }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      margin-bottom: 32px;
-    }
-
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 28px; }
     .product-item {
-      background: rgba(246,241,232,0.04);
-      padding: 28px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      background: rgba(246,241,232,0.04); padding: 22px 18px;
+      display: flex; flex-direction: column; gap: 8px;
       border: 1px solid rgba(246,241,232,0.05);
       transition: background 0.25s, border-color 0.25s;
-      cursor: default;
     }
-    .product-item:hover {
-      background: rgba(196,114,74,0.08);
-      border-color: rgba(196,114,74,0.15);
-    }
-
-    .product-icon {
-      font-size: 22px;
-      line-height: 1;
-    }
-
-    .product-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 14px;
-      color: var(--cream);
-      letter-spacing: 0.02em;
-    }
-
-    .product-sub {
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      color: rgba(246,241,232,0.3);
-      text-transform: uppercase;
-    }
-
+    .product-item:hover { background: rgba(196,114,74,0.08); border-color: rgba(196,114,74,0.2); }
+    .product-item.wide { grid-column: span 2; }
+    .p-icon { font-size: 20px; line-height: 1; }
+    .p-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 14px; color: var(--cream); }
+    .p-sub { font-size: 9px; letter-spacing: 0.12em; color: rgba(246,241,232,0.28); text-transform: uppercase; }
     .hero-price-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      border-top: 1px solid rgba(246,241,232,0.08);
-      padding-top: 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(246,241,232,0.08); padding-top: 20px;
     }
+    .price-tag { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 32px; color: var(--cream); }
+    .color-dots { display: flex; gap: 8px; align-items: center; justify-content: flex-end; margin-bottom: 6px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); }
+    .price-sub { font-size: 9px; letter-spacing: 0.2em; color: rgba(246,241,232,0.28); text-transform: uppercase; text-align: right; }
 
-    .price-tag {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 32px;
-      color: var(--cream);
-    }
-
-    .price-sub {
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      color: rgba(246,241,232,0.3);
-      text-transform: uppercase;
-    }
-
-    .color-dots {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-
-    /* ── SCROLL INDICATOR ── */
+    /* SCROLL HINT */
     .scroll-hint {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      animation: riseIn 1s ease 1.4s forwards;
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0; animation: riseIn 1s ease 1.4s forwards; z-index: 2;
     }
-    .scroll-hint span {
-      font-size: 8px;
-      letter-spacing: 0.3em;
-      color: rgba(246,241,232,0.25);
-      text-transform: uppercase;
-    }
+    .scroll-hint span { font-size: 8px; letter-spacing: 0.3em; color: rgba(246,241,232,0.22); text-transform: uppercase; }
     .scroll-line {
-      width: 1px;
-      height: 40px;
+      width: 1px; height: 40px;
       background: linear-gradient(to bottom, rgba(196,114,74,0.6), transparent);
-      animation: pulse-line 2s ease-in-out infinite;
+      animation: pulseLine 2s ease-in-out infinite;
     }
-    @keyframes pulse-line {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
+    @keyframes pulseLine { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-    /* ── STRIP ── */
+    /* STRIP */
     .strip {
-      background: var(--clay);
-      padding: 16px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 48px;
-      overflow: hidden;
+      background: var(--clay); padding: 14px 48px;
+      display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;
     }
-    .strip-item {
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      color: var(--cream);
-      text-transform: uppercase;
-      white-space: nowrap;
-      opacity: 0.85;
-    }
-    .strip-dot {
-      width: 3px; height: 3px;
-      background: rgba(246,241,232,0.4);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+    .strip-item { font-size: 9px; letter-spacing: 0.28em; color: var(--cream); text-transform: uppercase; opacity: 0.85; white-space: nowrap; }
+    .strip-dot { width: 3px; height: 3px; background: rgba(246,241,232,0.4); border-radius: 50%; flex-shrink: 0; }
 
-    /* ── SECTION COMMONS ── */
-    section {
-      padding: 120px 80px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
+    /* SECTION COMMON */
     .section-label {
-      font-size: 9px;
-      letter-spacing: 0.4em;
-      color: var(--clay);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
+      font-size: 9px; letter-spacing: 0.4em; color: var(--clay); text-transform: uppercase;
+      margin-bottom: 20px; display: flex; align-items: center; gap: 14px;
     }
-    .section-label::before {
-      content: '';
-      display: block;
-      width: 24px;
-      height: 1px;
-      background: var(--clay);
-    }
-
+    .section-label::before { content: ''; display: block; width: 22px; height: 1px; background: var(--clay); flex-shrink: 0; }
     .section-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(40px, 4vw, 64px);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-size: clamp(38px, 4vw, 60px); line-height: 1.05; letter-spacing: -0.01em;
     }
-    .section-heading em {
-      font-style: italic;
-      color: var(--clay);
-    }
+    .section-heading em { font-style: italic; color: var(--clay); }
 
-    /* ── PRODUCT SECTION ── */
-    .products-section {
-      background: var(--cream);
-      padding: 120px 0;
-    }
-    .products-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 80px;
-    }
-
-    .products-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      margin-bottom: 80px;
-      align-items: end;
-    }
-
-    .products-intro {
-      font-family: 'Fraunces', serif;
-      font-weight: 300;
-      font-style: italic;
-      font-size: 20px;
-      color: var(--warm-grey);
-      line-height: 1.7;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-    }
-
+    /* PRODUCTS SECTION */
+    .products-section { background: var(--cream); padding: 120px 0; }
+    .products-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; }
+    .products-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 72px; align-items: end; }
+    .products-intro { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 19px; color: var(--warm-grey); line-height: 1.75; }
+    .products-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
     .product-card {
-      background: var(--ink);
-      padding: 48px 36px 40px;
-      position: relative;
-      overflow: hidden;
-      cursor: default;
-      transition: transform 0.3s;
+      background: var(--ink); padding: 44px 32px 36px;
+      position: relative; overflow: hidden; transition: transform 0.3s;
     }
     .product-card:hover { transform: translateY(-4px); }
-
     .product-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--clay);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--clay); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
     }
     .product-card:hover::before { transform: scaleX(1); }
+    .card-number { font-size: 9px; letter-spacing: 0.3em; color: rgba(196,114,74,0.45); text-transform: uppercase; margin-bottom: 36px; }
+    .card-icon-lg { font-size: 32px; margin-bottom: 24px; display: block; }
+    .card-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 20px; color: var(--cream); margin-bottom: 14px; line-height: 1.25; }
+    .card-desc { font-size: 11px; line-height: 1.85; color: rgba(246,241,232,0.38); letter-spacing: 0.02em; }
 
-    .card-number {
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      color: rgba(196,114,74,0.5);
-      text-transform: uppercase;
-      margin-bottom: 40px;
-    }
-
-    .card-icon-lg {
-      font-size: 36px;
-      margin-bottom: 28px;
-      display: block;
-    }
-
-    .card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 22px;
-      color: var(--cream);
-      margin-bottom: 16px;
-      line-height: 1.2;
-    }
-
-    .card-desc {
-      font-size: 11px;
-      line-height: 1.8;
-      color: rgba(246,241,232,0.4);
-      letter-spacing: 0.02em;
-    }
-
-    /* ── WHY SECTION ── */
-    .why-section {
-      background: var(--linen);
-      padding: 120px 0;
-    }
-    .why-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 80px;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      margin-top: 64px;
-    }
-
-    .why-card {
-      background: var(--cream);
-      padding: 56px 48px;
-      border-left: 3px solid transparent;
-      transition: border-color 0.3s;
-    }
+    /* WHY SECTION */
+    .why-section { background: var(--linen); padding: 120px 0; }
+    .why-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 64px; }
+    .why-card { background: var(--cream); padding: 52px 44px; border-left: 3px solid transparent; transition: border-color 0.3s; }
     .why-card:hover { border-color: var(--clay); }
+    .why-num { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--linen); line-height: 1; margin-bottom: 20px; }
+    .why-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 21px; margin-bottom: 12px; color: var(--ink); }
+    .why-body { font-size: 12px; line-height: 1.95; color: var(--warm-grey); letter-spacing: 0.02em; }
 
-    .why-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 56px;
-      font-weight: 300;
-      color: var(--linen);
-      line-height: 1;
-      margin-bottom: 20px;
-    }
-
-    .why-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 400;
-      font-size: 22px;
-      margin-bottom: 14px;
-      color: var(--ink);
-    }
-
-    .why-body {
-      font-size: 12px;
-      line-height: 1.9;
-      color: var(--warm-grey);
-      letter-spacing: 0.02em;
-    }
-
-    /* ── COLOURS SECTION ── */
-    .colours-section {
-      background: var(--ink);
-      padding: 120px 0;
-    }
-    .colours-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 80px;
-    }
-
-    .colours-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(40px, 4vw, 64px);
-      line-height: 1.05;
-      color: var(--cream);
-      margin-bottom: 16px;
-    }
+    /* COLOURS SECTION */
+    .colours-section { background: var(--ink); padding: 120px 0; }
+    .colours-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; }
+    .colours-heading { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(38px, 4vw, 60px); line-height: 1.05; color: var(--cream); margin-bottom: 14px; }
     .colours-heading em { color: var(--clay); font-style: italic; }
-
-    .colours-sub {
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: 16px;
-      color: rgba(246,241,232,0.4);
-      margin-bottom: 64px;
-    }
-
-    .colour-swatches {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-    }
-
-    .swatch {
-      height: 240px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-      cursor: default;
-      transition: transform 0.3s;
-    }
+    .colours-sub { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 16px; color: rgba(246,241,232,0.38); margin-bottom: 60px; }
+    .colour-swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+    .swatch { height: 240px; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; overflow: hidden; transition: transform 0.3s; }
     .swatch:hover { transform: scaleY(1.02); }
+    .swatch-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 18px; color: var(--cream); margin-bottom: 4px; }
+    .swatch-tag { font-size: 8px; letter-spacing: 0.25em; color: rgba(246,241,232,0.45); text-transform: uppercase; }
 
-    .swatch-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 18px;
-      color: var(--cream);
-      margin-bottom: 4px;
-    }
-
-    .swatch-tag {
-      font-size: 8px;
-      letter-spacing: 0.25em;
-      color: rgba(246,241,232,0.5);
-      text-transform: uppercase;
-    }
-
-    /* ── CTA SECTION ── */
-    .cta-section {
-      background: var(--cream);
-      padding: 160px 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
+    /* CTA SECTION */
+    .cta-section { background: var(--cream); padding: 160px 80px; text-align: center; position: relative; overflow: hidden; }
     .cta-section::before {
-      content: 'HEARTH';
-      position: absolute;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 28vw;
-      font-weight: 300;
-      color: rgba(232,224,208,0.35);
-      letter-spacing: -0.05em;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      line-height: 1;
-      white-space: nowrap;
+      content: 'HEARTH'; position: absolute;
+      font-family: 'Cormorant Garamond', serif; font-size: 28vw; font-weight: 300;
+      color: rgba(232,224,208,0.35); letter-spacing: -0.05em;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      pointer-events: none; line-height: 1; white-space: nowrap;
     }
-
-    .cta-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-label {
-      font-size: 9px;
-      letter-spacing: 0.4em;
-      color: var(--clay);
-      text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-
-    .cta-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(44px, 5vw, 80px);
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      margin-bottom: 24px;
-      color: var(--ink);
-    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-label { font-size: 9px; letter-spacing: 0.4em; color: var(--clay); text-transform: uppercase; margin-bottom: 28px; }
+    .cta-heading { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(42px, 5vw, 76px); line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink); }
     .cta-heading em { font-style: italic; color: var(--clay); }
-
-    .cta-body {
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: 18px;
-      color: var(--warm-grey);
-      margin-bottom: 56px;
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.65;
-    }
-
+    .cta-body { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 18px; color: var(--warm-grey); margin: 0 auto 52px; max-width: 420px; line-height: 1.7; }
     .cta-btn {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--cream);
-      background: var(--ink);
-      padding: 20px 56px;
-      text-decoration: none;
-      display: inline-block;
+      font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--cream); background: var(--ink);
+      padding: 20px 56px; text-decoration: none; display: inline-block;
       transition: background 0.2s, transform 0.15s;
     }
     .cta-btn:hover { background: var(--clay); transform: translateY(-2px); }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
-      background: var(--ink);
-      padding: 60px 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      background: var(--ink); padding: 56px 80px;
+      display: flex; align-items: center; justify-content: space-between;
       border-top: 1px solid rgba(246,241,232,0.06);
     }
-
     .footer-wordmark {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 16px;
-      letter-spacing: 0.35em;
-      color: var(--cream);
-      text-transform: uppercase;
+      font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 15px;
+      letter-spacing: 0.3em; color: var(--cream); text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
     }
-
-    .footer-tagline {
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: 13px;
-      color: rgba(246,241,232,0.3);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 32px;
-    }
-    .footer-links a {
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(246,241,232,0.3);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .footer-tagline { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 13px; color: rgba(246,241,232,0.28); }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(246,241,232,0.28); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--clay); }
 
-    /* ── ANIMATIONS ── */
-    @keyframes riseIn {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    /* ANIMATIONS */
+    @keyframes riseIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
+    @media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 1024px) {
       .hero { grid-template-columns: 1fr; }
       .hero-right { display: none; }
       .hero-left { padding: 140px 48px 80px; }
+      .products-header { grid-template-columns: 1fr; gap: 28px; }
       .products-grid { grid-template-columns: 1fr 1fr; }
-      .products-header { grid-template-columns: 1fr; gap: 32px; }
       .why-grid { grid-template-columns: 1fr; }
       .colour-swatches { grid-template-columns: 1fr 1fr; }
       nav { padding: 20px 32px; }
       nav.scrolled { padding: 14px 32px; }
-      section { padding: 80px 32px; }
       .products-inner, .why-inner, .colours-inner { padding: 0 32px; }
+      .products-section, .why-section, .colours-section { padding: 80px 0; }
       .cta-section { padding: 100px 32px; }
-      footer { padding: 48px 32px; flex-direction: column; gap: 24px; text-align: center; }
+      footer { padding: 44px 32px; flex-direction: column; gap: 24px; text-align: center; }
       .footer-links { justify-content: center; }
     }
-
     @media (max-width: 640px) {
       .hero-title { font-size: 52px; }
       .hero-left { padding: 120px 24px 60px; }
       .products-grid { grid-template-columns: 1fr; }
       .colour-swatches { grid-template-columns: 1fr; }
-      .strip { gap: 24px; flex-wrap: wrap; }
-      .nav-cta { padding: 8px 16px; font-size: 9px; }
+      .strip { gap: 20px; padding: 14px 24px; }
       nav { padding: 16px 24px; }
     }
   </style>
@@ -758,7 +284,7 @@
   <!-- NAV -->
   <nav id="main-nav">
     <a class="nav-wordmark" href="#">
-      <svg class="flame" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg style="width:10px;height:18px;flex-shrink:0;" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 1C5 1 9 6 9 11C9 14.3 7.2 16.5 5 17C2.8 16.5 1 14.3 1 11C1 6 5 1 5 1Z" fill="#C4724A" opacity="0.9"/>
         <path d="M5 7C5 7 7 10 7 12.5C7 14 6.1 15 5 15.3C3.9 15 3 14 3 12.5C3 10 5 7 5 7Z" fill="#F6F1E8" opacity="0.4"/>
       </svg>
@@ -772,12 +298,12 @@
     <div class="hero-glow"></div>
 
     <div class="hero-left">
-      <p class="hero-eyebrow">Hearth Kitchenware — The Stoveside Set</p>
+      <p class="hero-eyebrow">Hearth Kitchenware &mdash; The Stoveside Set</p>
       <h1 class="hero-title">Your<br>stove&shy;top,<br><em>considered.</em></h1>
       <p class="hero-tagline">5 pieces. One set. Everything your stovetop has been missing.</p>
       <div class="hero-actions">
-        <a class="btn-primary" href="https://www.amazon.ca" target="_blank" rel="noopener">Shop on Amazon — $29.99</a>
-        <a class="btn-ghost" href="#the-set">See what's inside ↓</a>
+        <a class="btn-primary" href="https://www.amazon.ca" target="_blank" rel="noopener">Shop on Amazon &mdash; $29.99</a>
+        <a class="btn-ghost" href="#the-set">See what&rsquo;s inside &darr;</a>
       </div>
     </div>
 
@@ -785,29 +311,29 @@
       <div class="hero-product-card">
         <div class="product-grid">
           <div class="product-item">
-            <span class="product-icon">🥄</span>
-            <span class="product-name">Spoon Rest</span>
-            <span class="product-sub">Keeps counters clean</span>
+            <span class="p-icon">&#x1F944;</span>
+            <span class="p-name">Spoon Rest</span>
+            <span class="p-sub">Keeps counters clean</span>
           </div>
           <div class="product-item">
-            <span class="product-icon">🛡️</span>
-            <span class="product-name">Splatter Screen</span>
-            <span class="product-sub">Foldable. Flat-stores.</span>
+            <span class="p-icon">&#x1F6E1;&#xFE0F;</span>
+            <span class="p-name">Splatter Screen</span>
+            <span class="p-sub">Foldable. Flat-stores.</span>
           </div>
           <div class="product-item">
-            <span class="product-icon">🍳</span>
-            <span class="product-name">Spatula No. 1</span>
-            <span class="product-sub">Flex-tip precision</span>
+            <span class="p-icon">&#x1F373;</span>
+            <span class="p-name">Spatula</span>
+            <span class="p-sub">Flex-tip precision</span>
           </div>
           <div class="product-item">
-            <span class="product-icon">🍳</span>
-            <span class="product-name">Spatula No. 2</span>
-            <span class="product-sub">Wide-head turner</span>
+            <span class="p-icon">&#x1F95E;</span>
+            <span class="p-name">Turner</span>
+            <span class="p-sub">Wide-head flip</span>
           </div>
-          <div class="product-item" style="grid-column:span 2;">
-            <span class="product-icon">🔥</span>
-            <span class="product-name">Foldable Trivet</span>
-            <span class="product-sub">450°F heat-safe</span>
+          <div class="product-item wide">
+            <span class="p-icon">&#x1F525;</span>
+            <span class="p-name">Foldable Trivet</span>
+            <span class="p-sub">450&deg;F heat-safe</span>
           </div>
         </div>
         <div class="hero-price-row">
@@ -818,7 +344,7 @@
               <div class="dot" style="background:#8A6E5A;"></div>
               <div class="dot" style="background:#5A6B52;"></div>
             </div>
-            <span class="price-sub" style="display:block;margin-top:6px;">3 colourways</span>
+            <div class="price-sub">3 colourways</div>
           </div>
         </div>
       </div>
@@ -834,13 +360,13 @@
   <div class="strip">
     <span class="strip-item">Food-grade silicone</span>
     <div class="strip-dot"></div>
-    <span class="strip-item">Heat-safe to 450°F</span>
+    <span class="strip-item">Heat-safe to 450&deg;F</span>
     <div class="strip-dot"></div>
     <span class="strip-item">Dishwasher safe</span>
     <div class="strip-dot"></div>
     <span class="strip-item">Non-scratch</span>
     <div class="strip-dot"></div>
-    <span class="strip-item">Amazon FBA — Ships fast</span>
+    <span class="strip-item">Ships fast from Amazon FBA</span>
   </div>
 
   <!-- THE SET -->
@@ -848,44 +374,41 @@
     <div class="products-inner">
       <div class="products-header">
         <div>
-          <div class="section-label reveal">01 — The Set</div>
+          <div class="section-label reveal">01 &mdash; The Set</div>
           <h2 class="section-heading reveal">Five pieces.<br><em>One considered set.</em></h2>
         </div>
-        <p class="products-intro reveal">
-          We built the Stoveside Set because the stovetop is where cooking actually happens — and it deserved better than an afterthought.
-        </p>
+        <p class="products-intro reveal">We built the Stoveside Set because the stovetop is where cooking actually happens &mdash; and it deserved better than an afterthought.</p>
       </div>
-
-      <div class="products-grid" style="grid-template-columns:repeat(5,1fr)">
+      <div class="products-grid">
         <div class="product-card reveal">
           <div class="card-number">01 / 05</div>
-          <span class="card-icon-lg">🥄</span>
+          <span class="card-icon-lg">&#x1F944;</span>
           <h3 class="card-title">Spoon Rest</h3>
-          <p class="card-desc">Micro-suction base keeps it planted. Catches every drip so your counter doesn't have to.</p>
+          <p class="card-desc">Micro-suction base keeps it planted on the stovetop. Catches every drip so your counter doesn&rsquo;t have to.</p>
         </div>
-        <div class="product-card reveal" style="transition-delay:0.1s">
+        <div class="product-card reveal" style="transition-delay:0.08s">
           <div class="card-number">02 / 05</div>
-          <span class="card-icon-lg">🛡️</span>
-          <h3 class="card-title">Foldable Splatter Screen</h3>
-          <p class="card-desc">Full-diameter silicone screen folds flat for easy storage. Stops oil spray. Works on any pan.</p>
+          <span class="card-icon-lg">&#x1F6E1;&#xFE0F;</span>
+          <h3 class="card-title">Splatter Screen</h3>
+          <p class="card-desc">Full-diameter silicone screen folds flat for storage. Stops oil spray. Works on any pan or pot.</p>
         </div>
-        <div class="product-card reveal" style="transition-delay:0.2s">
+        <div class="product-card reveal" style="transition-delay:0.16s">
           <div class="card-number">03 / 05</div>
-          <span class="card-icon-lg">🍳</span>
-          <h3 class="card-title">Silicone Spatula No. 1</h3>
-          <p class="card-desc">Flex-tip precision for scrambled eggs, delicate fish, and everything that needs a careful touch.</p>
+          <span class="card-icon-lg">&#x1F373;</span>
+          <h3 class="card-title">Spatula</h3>
+          <p class="card-desc">Flex-tip precision for scrambled eggs, delicate fish, and everything that needs a careful touch. Won&rsquo;t scratch your cookware.</p>
         </div>
-        <div class="product-card reveal" style="transition-delay:0.3s">
+        <div class="product-card reveal" style="transition-delay:0.24s">
           <div class="card-number">04 / 05</div>
-          <span class="card-icon-lg">🍳</span>
-          <h3 class="card-title">Silicone Spatula No. 2</h3>
-          <p class="card-desc">Wide-head turner built for pancakes, burgers, and anything that needs a confident flip. Won't scratch your cookware.</p>
+          <span class="card-icon-lg">&#x1F95E;</span>
+          <h3 class="card-title">Turner</h3>
+          <p class="card-desc">Wide-head silicone turner built for pancakes, burgers, and anything that needs a confident flip. Non-scratch on all surfaces.</p>
         </div>
-        <div class="product-card reveal" style="transition-delay:0.4s">
+        <div class="product-card reveal" style="transition-delay:0.32s">
           <div class="card-number">05 / 05</div>
-          <span class="card-icon-lg">🔥</span>
+          <span class="card-icon-lg">&#x1F525;</span>
           <h3 class="card-title">Foldable Trivet</h3>
-          <p class="card-desc">Rated to 450°F. Folds compact, stores flat. Protects every surface — stone, wood, marble.</p>
+          <p class="card-desc">Rated to 450&deg;F. Folds compact, stores flat. Protects every surface &mdash; stone, wood, marble.</p>
         </div>
       </div>
     </div>
@@ -894,29 +417,28 @@
   <!-- WHY -->
   <div class="why-section">
     <div class="why-inner">
-      <div class="section-label reveal">02 — Why Hearth Kitchenware</div>
+      <div class="section-label reveal">02 &mdash; Why Hearth Kitchenware</div>
       <h2 class="section-heading reveal">Kitchenware for people<br>who <em>actually cook.</em></h2>
-
       <div class="why-grid">
         <div class="why-card reveal">
           <div class="why-num">01</div>
           <h3 class="why-title">Designed as a set</h3>
-          <p class="why-body">Every piece was chosen because it belongs together on a stovetop — not because it filled out a SKU list. One colourway. One aesthetic. One set.</p>
+          <p class="why-body">Every piece was chosen because it belongs together on a stovetop &mdash; not because it filled a SKU list. One colourway. One aesthetic. One set.</p>
         </div>
-        <div class="why-card reveal" style="transition-delay:0.1s">
+        <div class="why-card reveal" style="transition-delay:0.08s">
           <div class="why-num">02</div>
           <h3 class="why-title">Built to last</h3>
-          <p class="why-body">Food-grade silicone rated to 450°F. Dishwasher safe. BPA-free. These tools live at your stove every day — they needed to be made for it.</p>
+          <p class="why-body">Food-grade silicone rated to 450&deg;F. Dishwasher safe. BPA-free. These tools live at your stove every day &mdash; they needed to be made for it.</p>
         </div>
-        <div class="why-card reveal" style="transition-delay:0.2s">
+        <div class="why-card reveal" style="transition-delay:0.16s">
           <div class="why-num">03</div>
           <h3 class="why-title">Gift-ready by design</h3>
-          <p class="why-body">Comes in premium packaging that looks as good as what's inside. The most thoughtful kitchen gift for people who take cooking seriously.</p>
+          <p class="why-body">Comes in premium packaging that looks as good as what&rsquo;s inside. The most thoughtful kitchen gift for people who take cooking seriously.</p>
         </div>
-        <div class="why-card reveal" style="transition-delay:0.3s">
+        <div class="why-card reveal" style="transition-delay:0.24s">
           <div class="why-num">04</div>
           <h3 class="why-title">Colours that belong in a home</h3>
-          <p class="why-body">Obsidian Black, Warm Terracotta, Sage Green. Colours chosen to complement real kitchens — not shout from a shelf.</p>
+          <p class="why-body">Obsidian Black, Warm Terracotta, Sage Green. Colours chosen to complement real kitchens &mdash; not shout from a shelf.</p>
         </div>
       </div>
     </div>
@@ -925,26 +447,25 @@
   <!-- COLOURS -->
   <div class="colours-section">
     <div class="colours-inner">
-      <div class="section-label reveal" style="color:var(--clay);">03 — Colourways</div>
+      <div class="section-label reveal" style="color:var(--clay);">03 &mdash; Colourways</div>
       <h2 class="colours-heading reveal">Colours that <em>belong</em><br>in a real kitchen.</h2>
       <p class="colours-sub reveal">Three colourways at launch. Each designed for a different home aesthetic.</p>
-
       <div class="colour-swatches">
         <div class="swatch reveal" style="background:#1A1A1A;">
           <span class="swatch-name">Obsidian Black</span>
-          <span class="swatch-tag">Launch SKU · Modern kitchens</span>
+          <span class="swatch-tag">Launch SKU &middot; Modern kitchens</span>
         </div>
-        <div class="swatch reveal" style="background:#8A6E5A; transition-delay:0.1s">
+        <div class="swatch reveal" style="background:#8A6E5A;transition-delay:0.08s">
           <span class="swatch-name">Warm Terracotta</span>
-          <span class="swatch-tag">Launch SKU · Boho & farmhouse</span>
+          <span class="swatch-tag">Launch SKU &middot; Boho &amp; farmhouse</span>
         </div>
-        <div class="swatch reveal" style="background:#5A6B52; transition-delay:0.2s">
+        <div class="swatch reveal" style="background:#5A6B52;transition-delay:0.16s">
           <span class="swatch-name">Sage Green</span>
-          <span class="swatch-tag">Month 3 · Organic & Pinterest-core</span>
+          <span class="swatch-tag">Month 3 &middot; Organic &amp; Pinterest-core</span>
         </div>
-        <div class="swatch reveal" style="background:#C8C0B0; transition-delay:0.3s">
-          <span class="swatch-name" style="color:var(--ink)">Linen Grey</span>
-          <span class="swatch-tag" style="color:rgba(44,44,42,0.45)">Month 3 · Scandi & minimalist</span>
+        <div class="swatch reveal" style="background:#C8C0B0;transition-delay:0.24s">
+          <span class="swatch-name" style="color:#2C2C2A;">Linen Grey</span>
+          <span class="swatch-tag" style="color:rgba(44,44,42,0.42);">Month 3 &middot; Scandi &amp; minimalist</span>
         </div>
       </div>
     </div>
@@ -956,34 +477,43 @@
       <p class="cta-label reveal">Available on Amazon</p>
       <h2 class="cta-heading reveal">Your kitchen just got<br>a little more <em>considered.</em></h2>
       <p class="cta-body reveal">The Stoveside Set. 5 pieces. Premium packaging. Ships fast from Amazon FBA.</p>
-      <a class="cta-btn reveal" href="https://www.amazon.ca" target="_blank" rel="noopener">Shop Now — $29.99 on Amazon</a>
+      <a class="cta-btn reveal" href="https://www.amazon.ca" target="_blank" rel="noopener">Shop Now &mdash; $29.99 on Amazon</a>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-wordmark">
-      <span style="color:var(--clay);margin-right:10px;">♦</span>Hearth Kitchenware
+      <svg style="width:9px;height:16px;flex-shrink:0;" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 1C5 1 9 6 9 11C9 14.3 7.2 16.5 5 17C2.8 16.5 1 14.3 1 11C1 6 5 1 5 1Z" fill="#C4724A" opacity="0.9"/>
+        <path d="M5 7C5 7 7 10 7 12.5C7 14 6.1 15 5 15.3C3.9 15 3 14 3 12.5C3 10 5 7 5 7Z" fill="#F6F1E8" opacity="0.4"/>
+      </svg>
+      Hearth Kitchenware
     </div>
     <span class="footer-tagline">Every detail matters.</span>
     <div class="footer-links">
       <a href="https://www.amazon.ca" target="_blank" rel="noopener">Amazon CA</a>
       <a href="https://www.amazon.com" target="_blank" rel="noopener">Amazon US</a>
-      <a href="/cdn-cgi/l/email-protection#036b666f6f6c436b666271776b686a77606b666d2d606c6e">Contact</a>
+      <a href="mailto:hello@hearthkitchen.com">Contact</a>
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Nav scroll state
-    const nav = document.getElementById('main-nav');
-    window.addEventListener('scroll', () => {
+  <script>
+    var nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', function() {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     });
-
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
         if (e.isIntersecting) {
           e.target.classList.add('visible');
           observer.unobserve(e.target);
-  
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
