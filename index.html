@@ -6,7 +6,59 @@
   <title>Hearth Kitchenware — The Stoveside Set</title>
   <meta name="description" content="The Stoveside Set — 5-piece silicone kitchen bundle designed for people who cook seriously and care how their kitchen looks.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,200;1,9..144,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <!--
+  ============================================================
+  IMAGE FILES — all must sit in the same folder as index.html
+  ============================================================
+  logo.png           Nav + footer logo
+                     Ideal: 400 x 200 px | 2:1 landscape | transparent PNG
+
+  hero.png           Hero section right panel (desktop)
+                     Ideal: 1200 x 1200 px | 1:1 square
+                     Content: All 5 products with feature callouts
+
+  all-5-white.png    "The Set" overview section
+                     Ideal: 1200 x 1200 px | 1:1 square
+                     Content: Clean white background, all 5 pieces laid out
+
+  spoon-rest.png     Spoon Rest product section
+                     Ideal: 1200 x 1200 px | 1:1 square
+
+  splatter-screen.png  Splatter Screen product section
+                       Ideal: 1200 x 1200 px | 1:1 square
+                       Content: Both open and folded states
+
+  spatula-turner.png   Spatula & Turner product section
+                       Ideal: 1200 x 1200 px | 1:1 square
+                       Content: Both tools side by side
+
+  trivet.png           Trivet product section
+                       Ideal: 1200 x 1200 px | 1:1 square
+                       Content: Folded + open states
+
+  contextual.png       Full-width lifestyle section
+                       Ideal: 2400 x 1350 px | 16:9 landscape
+                       Content: Aspirational kitchen scene, products in use
+
+  gift.png             Gift section left panel
+                       Ideal: 1200 x 1500 px | 4:5 portrait
+                       Content: Gift box open, premium packaging hero shot
+
+  ============================================================
+  HOW TO UPDATE AN IMAGE
+  Replace the file in your GitHub repo with a new one using
+  the exact same filename. GitHub Pages will serve the new
+  version within a few minutes.
+
+  CACHE BUSTING
+  If browsers show the old image after an update, increment
+  the version number in each src URL below:
+    e.g. src="logo.png?v=1"  -->  src="logo.png?v=2"
+  ============================================================
+  -->
+
   <style>
     :root {
       --cream:     #F6F1E8;
@@ -15,7 +67,6 @@
       --clay:      #C4724A;
       --warm-grey: #8A8780;
     }
-
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { background: var(--cream); color: var(--ink); font-family: 'DM Mono', monospace; overflow-x: hidden; }
@@ -24,18 +75,19 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 24px 48px;
-      background: rgba(246,241,232,0.92);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      padding: 16px 48px;
+      background: rgba(246,241,232,0.95);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s, padding 0.3s;
     }
-    nav.scrolled { border-color: var(--linen); padding: 16px 48px; }
-    .nav-wordmark {
-      font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 17px;
-      letter-spacing: 0.3em; color: var(--ink); text-transform: uppercase;
-      text-decoration: none; display: flex; align-items: center; gap: 10px;
-    }
+    nav.scrolled { border-color: var(--linen); padding: 12px 48px; }
+    .nav-logo { height: 44px; width: auto; display: block; }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-social { display: flex; gap: 14px; }
+    .nav-social a { color: var(--warm-grey); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; }
+    .nav-social a:hover { color: var(--clay); }
+    .nav-social svg { width: 16px; height: 16px; }
     .nav-cta {
       font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em;
       text-transform: uppercase; color: var(--cream); background: var(--clay);
@@ -100,36 +152,22 @@
     }
     .btn-ghost:hover { color: rgba(246,241,232,0.85); border-color: rgba(246,241,232,0.5); }
 
-    /* HERO RIGHT CARD */
+    /* HERO RIGHT */
     .hero-right {
       display: flex; align-items: center; justify-content: center;
-      padding: 160px 60px 100px; z-index: 1;
+      padding: 120px 60px 100px; z-index: 1; position: relative;
     }
-    .hero-product-card {
-      width: 100%; max-width: 400px;
-      background: rgba(246,241,232,0.04); border: 1px solid rgba(246,241,232,0.08);
-      padding: 40px; opacity: 0; animation: riseIn 1s ease 0.6s forwards;
+    .hero-img-wrap {
+      width: 100%; max-width: 460px; position: relative;
+      opacity: 0; animation: riseIn 1s ease 0.6s forwards;
     }
-    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 28px; }
-    .product-item {
-      background: rgba(246,241,232,0.04); padding: 22px 18px;
-      display: flex; flex-direction: column; gap: 8px;
-      border: 1px solid rgba(246,241,232,0.05);
-      transition: background 0.25s, border-color 0.25s;
+    .hero-img-wrap img { width: 100%; display: block; }
+    .hero-price-badge {
+      position: absolute; bottom: -20px; left: -20px;
+      background: var(--clay); padding: 22px 28px;
     }
-    .product-item:hover { background: rgba(196,114,74,0.08); border-color: rgba(196,114,74,0.2); }
-    .product-item.wide { grid-column: span 2; }
-    .p-icon { font-size: 20px; line-height: 1; }
-    .p-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 14px; color: var(--cream); }
-    .p-sub { font-size: 9px; letter-spacing: 0.12em; color: rgba(246,241,232,0.28); text-transform: uppercase; }
-    .hero-price-row {
-      display: flex; align-items: center; justify-content: space-between;
-      border-top: 1px solid rgba(246,241,232,0.08); padding-top: 20px;
-    }
-    .price-tag { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 32px; color: var(--cream); }
-    .color-dots { display: flex; gap: 8px; align-items: center; justify-content: flex-end; margin-bottom: 6px; }
-    .dot { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); }
-    .price-sub { font-size: 9px; letter-spacing: 0.2em; color: rgba(246,241,232,0.28); text-transform: uppercase; text-align: right; }
+    .badge-price { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 36px; color: var(--cream); display: block; line-height: 1; }
+    .badge-sub { font-size: 8px; letter-spacing: 0.25em; color: rgba(246,241,232,0.7); text-transform: uppercase; margin-top: 6px; display: block; }
 
     /* SCROLL HINT */
     .scroll-hint {
@@ -150,7 +188,7 @@
       background: var(--clay); padding: 14px 48px;
       display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;
     }
-    .strip-item { font-size: 9px; letter-spacing: 0.28em; color: var(--cream); text-transform: uppercase; opacity: 0.85; white-space: nowrap; }
+    .strip-item { font-size: 9px; letter-spacing: 0.28em; color: var(--cream); text-transform: uppercase; opacity: 0.9; white-space: nowrap; }
     .strip-dot { width: 3px; height: 3px; background: rgba(246,241,232,0.4); border-radius: 50%; flex-shrink: 0; }
 
     /* SECTION COMMON */
@@ -165,28 +203,73 @@
     }
     .section-heading em { font-style: italic; color: var(--clay); }
 
-    /* PRODUCTS SECTION */
-    .products-section { background: var(--cream); padding: 120px 0; }
-    .products-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; }
-    .products-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 72px; align-items: end; }
-    .products-intro { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 19px; color: var(--warm-grey); line-height: 1.75; }
-    .products-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
-    .product-card {
-      background: var(--ink); padding: 44px 32px 36px;
-      position: relative; overflow: hidden; transition: transform 0.3s;
+    /* OVERVIEW */
+    .overview-section { background: var(--linen); padding: 100px 0; }
+    .overview-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; }
+    .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .overview-img { width: 100%; display: block; }
+    .overview-text p {
+      font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+      font-size: 20px; color: var(--warm-grey); line-height: 1.75;
+      margin-top: 28px; margin-bottom: 40px;
     }
-    .product-card:hover { transform: translateY(-4px); }
-    .product-card::before {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: var(--clay); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
-    }
-    .product-card:hover::before { transform: scaleX(1); }
-    .card-number { font-size: 9px; letter-spacing: 0.3em; color: rgba(196,114,74,0.45); text-transform: uppercase; margin-bottom: 36px; }
-    .card-icon-lg { font-size: 32px; margin-bottom: 24px; display: block; }
-    .card-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 20px; color: var(--cream); margin-bottom: 14px; line-height: 1.25; }
-    .card-desc { font-size: 11px; line-height: 1.85; color: rgba(246,241,232,0.38); letter-spacing: 0.02em; }
+    .feature-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 8px 16px; border: 1px solid rgba(44,44,42,0.15); color: var(--warm-grey); }
 
-    /* WHY SECTION */
+    /* PRODUCT SECTIONS */
+    .product-section { padding: 120px 0; }
+    .product-section-inner {
+      max-width: 1400px; margin: 0 auto; padding: 0 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;
+    }
+    .product-section-inner.reverse { direction: rtl; }
+    .product-section-inner.reverse > * { direction: ltr; }
+    .ps-img-wrap { position: relative; }
+    .ps-img { width: 100%; display: block; }
+    .ps-img-label {
+      position: absolute; top: 24px; left: 24px;
+      font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
+      background: var(--clay); color: var(--cream); padding: 8px 14px;
+    }
+    .ps-num { font-family: 'Cormorant Garamond', serif; font-size: 80px; font-weight: 300; line-height: 1; margin-bottom: -10px; }
+    .ps-title {
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-size: clamp(34px, 3.5vw, 52px); line-height: 1.05; margin-bottom: 20px;
+    }
+    .ps-title em { font-style: italic; color: var(--clay); }
+    .ps-desc { font-family: 'Fraunces', serif; font-weight: 300; font-style: italic; font-size: 17px; line-height: 1.8; margin-bottom: 36px; }
+    .ps-specs { list-style: none; display: flex; flex-direction: column; }
+    .ps-specs li {
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+      display: flex; align-items: flex-start; gap: 12px; padding: 10px 0;
+    }
+    .ps-specs li::before { content: '—'; color: var(--clay); flex-shrink: 0; }
+    .ps-light .ps-num { color: rgba(44,44,42,0.06); }
+    .ps-light .ps-title { color: var(--ink); }
+    .ps-light .ps-desc { color: var(--warm-grey); }
+    .ps-light .ps-specs li { color: var(--warm-grey); border-bottom: 1px solid rgba(44,44,42,0.08); }
+    .ps-dark .ps-num { color: rgba(246,241,232,0.05); }
+    .ps-dark .ps-title { color: var(--cream); }
+    .ps-dark .ps-desc { color: rgba(246,241,232,0.42); }
+    .ps-dark .ps-specs li { color: rgba(246,241,232,0.38); border-bottom: 1px solid rgba(246,241,232,0.07); }
+
+    /* CONTEXTUAL */
+    .contextual-section { position: relative; overflow: hidden; height: 70vh; min-height: 480px; }
+    .contextual-section img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .contextual-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(44,44,42,0.78) 0%, rgba(44,44,42,0.2) 60%, transparent 100%);
+      display: flex; align-items: center;
+    }
+    .contextual-text { max-width: 560px; padding: 0 80px; }
+    .contextual-text h2 {
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-size: clamp(42px, 5vw, 72px); color: var(--cream); line-height: 1.0; margin-bottom: 20px;
+    }
+    .contextual-text h2 em { color: var(--clay); font-style: italic; }
+    .contextual-text p { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 18px; color: rgba(246,241,232,0.6); line-height: 1.7; }
+
+    /* WHY */
     .why-section { background: var(--linen); padding: 120px 0; }
     .why-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; }
     .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 64px; }
@@ -196,24 +279,32 @@
     .why-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 21px; margin-bottom: 12px; color: var(--ink); }
     .why-body { font-size: 12px; line-height: 1.95; color: var(--warm-grey); letter-spacing: 0.02em; }
 
-    /* COLOURS SECTION */
-    .colours-section { background: var(--ink); padding: 120px 0; }
-    .colours-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; }
-    .colours-heading { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(38px, 4vw, 60px); line-height: 1.05; color: var(--cream); margin-bottom: 14px; }
-    .colours-heading em { color: var(--clay); font-style: italic; }
-    .colours-sub { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 16px; color: rgba(246,241,232,0.38); margin-bottom: 60px; }
-    .colour-swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
-    .swatch { height: 240px; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; overflow: hidden; transition: transform 0.3s; }
-    .swatch:hover { transform: scaleY(1.02); }
-    .swatch-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 18px; color: var(--cream); margin-bottom: 4px; }
-    .swatch-tag { font-size: 8px; letter-spacing: 0.25em; color: rgba(246,241,232,0.45); text-transform: uppercase; }
+    /* GIFT */
+    .gift-section { background: var(--ink); overflow: hidden; }
+    .gift-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 680px; }
+    .gift-img-side { position: relative; overflow: hidden; }
+    .gift-img-side img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gift-img-side::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent, rgba(44,44,42,0.25)); }
+    .gift-text-side { padding: 80px; display: flex; flex-direction: column; justify-content: center; }
+    .gift-label { font-size: 9px; letter-spacing: 0.4em; color: var(--clay); text-transform: uppercase; margin-bottom: 28px; display: flex; align-items: center; gap: 14px; }
+    .gift-label::before { content: ''; display: block; width: 22px; height: 1px; background: var(--clay); }
+    .gift-heading { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(38px, 4vw, 62px); color: var(--cream); line-height: 1.05; margin-bottom: 24px; }
+    .gift-heading em { font-style: italic; color: var(--clay); }
+    .gift-body { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 18px; color: rgba(246,241,232,0.5); line-height: 1.75; margin-bottom: 40px; max-width: 400px; }
+    .gift-reasons { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
+    .gift-reasons li { font-size: 10px; letter-spacing: 0.15em; color: rgba(246,241,232,0.42); text-transform: uppercase; display: flex; gap: 14px; align-items: flex-start; }
+    .gift-reasons li::before { content: '✓'; color: var(--clay); font-size: 11px; flex-shrink: 0; }
+    .gift-btn { display: inline-block; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink); background: var(--cream); padding: 20px 40px; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+    .gift-btn:hover { background: var(--clay); color: var(--cream); transform: translateY(-2px); }
+    .gift-occasions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .occasion-tag { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; padding: 7px 14px; border: 1px solid rgba(246,241,232,0.12); color: rgba(246,241,232,0.32); }
 
-    /* CTA SECTION */
+    /* CTA */
     .cta-section { background: var(--cream); padding: 160px 80px; text-align: center; position: relative; overflow: hidden; }
     .cta-section::before {
       content: 'HEARTH'; position: absolute;
       font-family: 'Cormorant Garamond', serif; font-size: 28vw; font-weight: 300;
-      color: rgba(232,224,208,0.35); letter-spacing: -0.05em;
+      color: rgba(232,224,208,0.38); letter-spacing: -0.05em;
       top: 50%; left: 50%; transform: translate(-50%, -50%);
       pointer-events: none; line-height: 1; white-space: nowrap;
     }
@@ -222,26 +313,19 @@
     .cta-heading { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(42px, 5vw, 76px); line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink); }
     .cta-heading em { font-style: italic; color: var(--clay); }
     .cta-body { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 18px; color: var(--warm-grey); margin: 0 auto 52px; max-width: 420px; line-height: 1.7; }
-    .cta-btn {
-      font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em;
-      text-transform: uppercase; color: var(--cream); background: var(--ink);
-      padding: 20px 56px; text-decoration: none; display: inline-block;
-      transition: background 0.2s, transform 0.15s;
-    }
+    .cta-btn { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--cream); background: var(--ink); padding: 20px 56px; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.15s; }
     .cta-btn:hover { background: var(--clay); transform: translateY(-2px); }
 
     /* FOOTER */
-    footer {
-      background: var(--ink); padding: 56px 80px;
-      display: flex; align-items: center; justify-content: space-between;
-      border-top: 1px solid rgba(246,241,232,0.06);
-    }
-    .footer-wordmark {
-      font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 15px;
-      letter-spacing: 0.3em; color: var(--cream); text-transform: uppercase;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .footer-tagline { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 13px; color: rgba(246,241,232,0.28); }
+    footer { background: var(--ink); padding: 56px 80px; border-top: 1px solid rgba(246,241,232,0.06); }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+    .footer-logo { height: 44px; width: auto; display: block; }
+    .footer-socials { display: flex; gap: 20px; align-items: center; }
+    .footer-socials a { display: flex; align-items: center; gap: 8px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(246,241,232,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-socials a:hover { color: var(--clay); }
+    .footer-socials svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; border-top: 1px solid rgba(246,241,232,0.05); }
+    .footer-tagline { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 13px; color: rgba(246,241,232,0.22); }
     .footer-links { display: flex; gap: 28px; }
     .footer-links a { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(246,241,232,0.28); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--clay); }
@@ -252,104 +336,80 @@
     .reveal.visible { opacity: 1; transform: none; }
 
     /* RESPONSIVE */
-    @media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 1024px) {
       .hero { grid-template-columns: 1fr; }
       .hero-right { display: none; }
       .hero-left { padding: 140px 48px 80px; }
-      .products-header { grid-template-columns: 1fr; gap: 28px; }
-      .products-grid { grid-template-columns: 1fr 1fr; }
+      .overview-grid, .gift-inner, .product-section-inner { grid-template-columns: 1fr; gap: 48px; }
+      .product-section-inner.reverse { direction: ltr; }
+      .gift-text-side { padding: 60px 48px; }
+      .contextual-text { padding: 0 48px; }
       .why-grid { grid-template-columns: 1fr; }
-      .colour-swatches { grid-template-columns: 1fr 1fr; }
-      nav { padding: 20px 32px; }
-      nav.scrolled { padding: 14px 32px; }
-      .products-inner, .why-inner, .colours-inner { padding: 0 32px; }
-      .products-section, .why-section, .colours-section { padding: 80px 0; }
+      nav { padding: 14px 32px; }
+      nav.scrolled { padding: 10px 32px; }
+      .overview-inner, .why-inner { padding: 0 32px; }
+      .product-section-inner { padding: 0 32px; }
       .cta-section { padding: 100px 32px; }
-      footer { padding: 44px 32px; flex-direction: column; gap: 24px; text-align: center; }
+      footer { padding: 44px 32px; }
+      .footer-top { flex-direction: column; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 16px; }
       .footer-links { justify-content: center; }
     }
     @media (max-width: 640px) {
       .hero-title { font-size: 52px; }
       .hero-left { padding: 120px 24px 60px; }
-      .products-grid { grid-template-columns: 1fr; }
-      .colour-swatches { grid-template-columns: 1fr; }
       .strip { gap: 20px; padding: 14px 24px; }
-      nav { padding: 16px 24px; }
+      nav { padding: 12px 20px; }
+      .nav-social { display: none; }
+      .contextual-text { padding: 0 24px; }
+      .product-section-inner { padding: 0 24px; }
+      .gift-text-side { padding: 48px 24px; }
+      .why-card { padding: 36px 28px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- NAV | logo.png — 400x200px, transparent PNG -->
   <nav id="main-nav">
-    <a class="nav-wordmark" href="#">
-      <svg style="width:10px;height:18px;flex-shrink:0;" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 1C5 1 9 6 9 11C9 14.3 7.2 16.5 5 17C2.8 16.5 1 14.3 1 11C1 6 5 1 5 1Z" fill="#C4724A" opacity="0.9"/>
-        <path d="M5 7C5 7 7 10 7 12.5C7 14 6.1 15 5 15.3C3.9 15 3 14 3 12.5C3 10 5 7 5 7Z" fill="#F6F1E8" opacity="0.4"/>
-      </svg>
-      Hearth Kitchenware
-    </a>
-    <a class="nav-cta" href="https://www.amazon.ca" target="_blank" rel="noopener">Shop on Amazon</a>
+    <a href="#"><img class="nav-logo" src="logo.png?v=1" alt="Hearth Kitchenware"></a>
+    <div class="nav-right">
+      <div class="nav-social">
+        <a href="https://www.instagram.com/hearthkitchenware/" target="_blank" rel="noopener" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="https://www.tiktok.com/@hearthkitchenware?lang=en" target="_blank" rel="noopener" title="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.67a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+        </a>
+      </div>
+      <a class="nav-cta" href="https://www.amazon.com/dp/B0GVXTNQ2Q" target="_blank" rel="noopener">Shop on Amazon</a>
+    </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO | hero.png — 1200x1200px square -->
   <div class="hero">
     <div class="hero-glow"></div>
-
     <div class="hero-left">
       <p class="hero-eyebrow">Hearth Kitchenware &mdash; The Stoveside Set</p>
       <h1 class="hero-title">Your<br>stove&shy;top,<br><em>considered.</em></h1>
-      <p class="hero-tagline">5 pieces. One set. Everything your stovetop has been missing.</p>
+      <p class="hero-tagline">5 pieces of food-grade silicone. Everything your stovetop has been missing &mdash; finally in one considered set.</p>
       <div class="hero-actions">
-        <a class="btn-primary" href="https://www.amazon.ca" target="_blank" rel="noopener">Shop on Amazon &mdash; $29.99</a>
+        <a class="btn-primary" href="https://www.amazon.com/dp/B0GVXTNQ2Q" target="_blank" rel="noopener">Shop on Amazon &mdash; $34.99</a>
         <a class="btn-ghost" href="#the-set">See what&rsquo;s inside &darr;</a>
       </div>
     </div>
-
     <div class="hero-right">
-      <div class="hero-product-card">
-        <div class="product-grid">
-          <div class="product-item">
-            <span class="p-icon">&#x1F944;</span>
-            <span class="p-name">Spoon Rest</span>
-            <span class="p-sub">Keeps counters clean</span>
-          </div>
-          <div class="product-item">
-            <span class="p-icon">&#x1F6E1;&#xFE0F;</span>
-            <span class="p-name">Splatter Screen</span>
-            <span class="p-sub">Foldable. Flat-stores.</span>
-          </div>
-          <div class="product-item">
-            <span class="p-icon">&#x1F373;</span>
-            <span class="p-name">Spatula</span>
-            <span class="p-sub">Flex-tip precision</span>
-          </div>
-          <div class="product-item">
-            <span class="p-icon">&#x1F95E;</span>
-            <span class="p-name">Turner</span>
-            <span class="p-sub">Wide-head flip</span>
-          </div>
-          <div class="product-item wide">
-            <span class="p-icon">&#x1F525;</span>
-            <span class="p-name">Foldable Trivet</span>
-            <span class="p-sub">450&deg;F heat-safe</span>
-          </div>
-        </div>
-        <div class="hero-price-row">
-          <span class="price-tag">$29.99</span>
-          <div>
-            <div class="color-dots">
-              <div class="dot" style="background:#1A1A1A;"></div>
-              <div class="dot" style="background:#8A6E5A;"></div>
-              <div class="dot" style="background:#5A6B52;"></div>
-            </div>
-            <div class="price-sub">3 colourways</div>
-          </div>
+      <div class="hero-img-wrap">
+        <img src="hero.png?v=1" alt="Hearth Stoveside Set — all 5 pieces">
+        <div class="hero-price-badge">
+          <span class="badge-price">$34.99</span>
+          <span class="badge-sub">5-Piece Set &middot; On Amazon</span>
         </div>
       </div>
     </div>
-
     <div class="scroll-hint">
       <span>Scroll</span>
       <div class="scroll-line"></div>
@@ -364,60 +424,139 @@
     <div class="strip-dot"></div>
     <span class="strip-item">Dishwasher safe</span>
     <div class="strip-dot"></div>
-    <span class="strip-item">Non-scratch</span>
+    <span class="strip-item">BPA-Free</span>
     <div class="strip-dot"></div>
-    <span class="strip-item">Ships fast from Amazon FBA</span>
+    <span class="strip-item">Foldable &amp; space-saving</span>
+    <div class="strip-dot"></div>
+    <span class="strip-item">Available on Amazon</span>
   </div>
 
-  <!-- THE SET -->
-  <div class="products-section" id="the-set">
-    <div class="products-inner">
-      <div class="products-header">
-        <div>
+  <!-- OVERVIEW | all-5-white.png — 1200x1200px square, white background -->
+  <div class="overview-section" id="the-set">
+    <div class="overview-inner">
+      <div class="overview-grid">
+        <div class="reveal">
+          <img class="overview-img" src="all-5-white.png?v=1" alt="All 5 pieces of the Hearth Stoveside Set">
+        </div>
+        <div class="overview-text">
           <div class="section-label reveal">01 &mdash; The Set</div>
           <h2 class="section-heading reveal">Five pieces.<br><em>One considered set.</em></h2>
-        </div>
-        <p class="products-intro reveal">We built the Stoveside Set because the stovetop is where cooking actually happens &mdash; and it deserved better than an afterthought.</p>
-      </div>
-      <div class="products-grid">
-        <div class="product-card reveal">
-          <div class="card-number">01 / 05</div>
-          <span class="card-icon-lg">&#x1F944;</span>
-          <h3 class="card-title">Spoon Rest</h3>
-          <p class="card-desc">Micro-suction base keeps it planted on the stovetop. Catches every drip so your counter doesn&rsquo;t have to.</p>
-        </div>
-        <div class="product-card reveal" style="transition-delay:0.08s">
-          <div class="card-number">02 / 05</div>
-          <span class="card-icon-lg">&#x1F6E1;&#xFE0F;</span>
-          <h3 class="card-title">Splatter Screen</h3>
-          <p class="card-desc">Full-diameter silicone screen folds flat for storage. Stops oil spray. Works on any pan or pot.</p>
-        </div>
-        <div class="product-card reveal" style="transition-delay:0.16s">
-          <div class="card-number">03 / 05</div>
-          <span class="card-icon-lg">&#x1F373;</span>
-          <h3 class="card-title">Spatula</h3>
-          <p class="card-desc">Flex-tip precision for scrambled eggs, delicate fish, and everything that needs a careful touch. Won&rsquo;t scratch your cookware.</p>
-        </div>
-        <div class="product-card reveal" style="transition-delay:0.24s">
-          <div class="card-number">04 / 05</div>
-          <span class="card-icon-lg">&#x1F95E;</span>
-          <h3 class="card-title">Turner</h3>
-          <p class="card-desc">Wide-head silicone turner built for pancakes, burgers, and anything that needs a confident flip. Non-scratch on all surfaces.</p>
-        </div>
-        <div class="product-card reveal" style="transition-delay:0.32s">
-          <div class="card-number">05 / 05</div>
-          <span class="card-icon-lg">&#x1F525;</span>
-          <h3 class="card-title">Foldable Trivet</h3>
-          <p class="card-desc">Rated to 450&deg;F. Folds compact, stores flat. Protects every surface &mdash; stone, wood, marble.</p>
+          <p class="reveal">We built the Stoveside Set because the stovetop is where cooking actually happens &mdash; and it deserved better than an afterthought.</p>
+          <div class="feature-pills reveal">
+            <span class="pill">Spoon Rest</span>
+            <span class="pill">Splatter Screen</span>
+            <span class="pill">Spatula</span>
+            <span class="pill">Turner</span>
+            <span class="pill">Foldable Trivet</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- WHY -->
+  <!-- PRODUCT 1 — SPOON REST | spoon-rest.png — 1200x1200px square -->
+  <div class="product-section" style="background: var(--cream);">
+    <div class="product-section-inner">
+      <div class="ps-img-wrap reveal">
+        <img class="ps-img" src="spoon-rest.png?v=1" alt="Hearth Silicone Spoon Rest">
+        <span class="ps-img-label">01 / 05</span>
+      </div>
+      <div class="ps-content ps-light reveal" style="transition-delay:0.1s">
+        <div class="ps-num">01</div>
+        <h3 class="ps-title">Silicone<br><em>Spoon Rest</em></h3>
+        <p class="ps-desc">Deep drip-catching wells keep your counter spotless. The non-slip base stays planted on any surface while you cook &mdash; no sliding, no mess.</p>
+        <ul class="ps-specs">
+          <li>Size: 9&Prime; &times; 4&Prime; &times; 1.75&Prime;</li>
+          <li>Deep drip-catching wells &mdash; fits spoons, ladles &amp; spatulas</li>
+          <li>Non-slip base stays put on any surface</li>
+          <li>Food-grade silicone &mdash; 100% BPA free</li>
+          <li>Heat safe to 450&deg;F &middot; Dishwasher safe</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT 2 — SPLATTER SCREEN | splatter-screen.png — 1200x1200px square -->
+  <div class="product-section" style="background: var(--ink);">
+    <div class="product-section-inner reverse">
+      <div class="ps-img-wrap reveal">
+        <img class="ps-img" src="splatter-screen.png?v=1" alt="Hearth Foldable Splatter Screen">
+        <span class="ps-img-label">02 / 05</span>
+      </div>
+      <div class="ps-content ps-dark reveal" style="transition-delay:0.1s">
+        <div class="ps-num">02</div>
+        <h3 class="ps-title">Foldable<br><em>Splatter Screen</em></h3>
+        <p class="ps-desc">The only splatter screen that actually stores. Folds flat to 8&Prime; &times; 13.25&Prime; &mdash; fits in any drawer. Open, it covers pans up to 13&Prime; with a stainless steel core for rigidity.</p>
+        <ul class="ps-specs">
+          <li>Open: 16.1&Prime; &times; 13.25&Prime; &middot; Folded: 8&Prime; &times; 13.25&Prime;</li>
+          <li>Fits pans up to 13&Prime; diameter</li>
+          <li>Stainless steel core for rigidity when open</li>
+          <li>Food-grade silicone on surfaces that touch food</li>
+          <li>Heat safe to 450&deg;F &middot; Dishwasher safe</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT 3 & 4 — SPATULA & TURNER | spatula-turner.png — 1200x1200px square -->
+  <div class="product-section" style="background: var(--cream);">
+    <div class="product-section-inner">
+      <div class="ps-img-wrap reveal">
+        <img class="ps-img" src="spatula-turner.png?v=1" alt="Hearth Silicone Spatula and Turner">
+        <span class="ps-img-label">03 &amp; 04 / 05</span>
+      </div>
+      <div class="ps-content ps-light reveal" style="transition-delay:0.1s">
+        <div class="ps-num">03</div>
+        <h3 class="ps-title">Spatula &amp;<br><em>Turner</em></h3>
+        <p class="ps-desc">Seamless one-piece design means no food traps, no hidden grime. The spatula&rsquo;s flexible tip scrapes bowls clean. The turner&rsquo;s angled 4&Prime; head flips pancakes, fish, and eggs with confidence.</p>
+        <ul class="ps-specs">
+          <li>Spatula: 10.5&Prime; &middot; Head width 2.06&Prime;</li>
+          <li>Turner: 13&Prime; &middot; Head width 4&Prime; angled</li>
+          <li>Seamless one-piece &mdash; no food traps</li>
+          <li>Food-grade silicone on all food-contact surfaces</li>
+          <li>Ergonomic handle &middot; Heat safe to 450&deg;F &middot; Dishwasher safe</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT 5 — TRIVET | trivet.png — 1200x1200px square -->
+  <div class="product-section" style="background: var(--ink);">
+    <div class="product-section-inner reverse">
+      <div class="ps-img-wrap reveal">
+        <img class="ps-img" src="trivet.png?v=1" alt="Hearth Foldable Silicone Trivet">
+        <span class="ps-img-label">05 / 05</span>
+      </div>
+      <div class="ps-content ps-dark reveal" style="transition-delay:0.1s">
+        <div class="ps-num">05</div>
+        <h3 class="ps-title">Foldable<br><em>Trivet</em></h3>
+        <p class="ps-desc">Folds flat in seconds and stores anywhere. Open it up &mdash; 5.625&Prime; &times; 6.75&Prime; of heat protection for stone, wood, and marble countertops.</p>
+        <ul class="ps-specs">
+          <li>Open: 5.625&Prime; &times; 6.75&Prime; &middot; Folded: 8.625&Prime; &times; 1.5&Prime;</li>
+          <li>Folds flat in seconds &mdash; stores anywhere</li>
+          <li>Protects countertops from heat up to 450&deg;F</li>
+          <li>Food-grade silicone &mdash; 100% BPA free</li>
+          <li>Dishwasher safe</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEXTUAL | contextual.png — 2400x1350px, 16:9 landscape -->
+  <div class="contextual-section">
+    <img src="contextual.png?v=1" alt="Hearth Stoveside Set in use on a home stovetop">
+    <div class="contextual-overlay">
+      <div class="contextual-text">
+        <h2 class="reveal">Made for how<br>you <em>actually</em> cook.</h2>
+        <p class="reveal" style="transition-delay:0.1s">Every tool in the Stoveside Set lives at your stove &mdash; not in a drawer. Designed to look as good as they perform.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY HEARTH -->
   <div class="why-section">
     <div class="why-inner">
-      <div class="section-label reveal">02 &mdash; Why Hearth Kitchenware</div>
+      <div class="section-label reveal">02 &mdash; Why Hearth</div>
       <h2 class="section-heading reveal">Kitchenware for people<br>who <em>actually cook.</em></h2>
       <div class="why-grid">
         <div class="why-card reveal">
@@ -428,73 +567,93 @@
         <div class="why-card reveal" style="transition-delay:0.08s">
           <div class="why-num">02</div>
           <h3 class="why-title">Built to last</h3>
-          <p class="why-body">Food-grade silicone rated to 450&deg;F. Dishwasher safe. BPA-free. These tools live at your stove every day &mdash; they needed to be made for it.</p>
+          <p class="why-body">Food-grade silicone rated to 450&deg;F. Dishwasher safe. BPA-free. These tools live at your stove every day &mdash; they were made for it.</p>
         </div>
         <div class="why-card reveal" style="transition-delay:0.16s">
           <div class="why-num">03</div>
-          <h3 class="why-title">Gift-ready by design</h3>
-          <p class="why-body">Comes in premium packaging that looks as good as what&rsquo;s inside. The most thoughtful kitchen gift for people who take cooking seriously.</p>
+          <h3 class="why-title">Foldable where it matters</h3>
+          <p class="why-body">The splatter screen and trivet both fold flat. No wasted drawer space. No awkward storage. Everything compact when you need it, ready when you don&rsquo;t.</p>
         </div>
         <div class="why-card reveal" style="transition-delay:0.24s">
           <div class="why-num">04</div>
-          <h3 class="why-title">Colours that belong in a home</h3>
-          <p class="why-body">Obsidian Black, Warm Terracotta, Sage Green. Colours chosen to complement real kitchens &mdash; not shout from a shelf.</p>
+          <h3 class="why-title">Gift-ready by design</h3>
+          <p class="why-body">Comes in premium packaging that looks as considered as what&rsquo;s inside. The most thoughtful kitchen gift for people who take cooking seriously.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- COLOURS -->
-  <div class="colours-section">
-    <div class="colours-inner">
-      <div class="section-label reveal" style="color:var(--clay);">03 &mdash; Colourways</div>
-      <h2 class="colours-heading reveal">Colours that <em>belong</em><br>in a real kitchen.</h2>
-      <p class="colours-sub reveal">Three colourways at launch. Each designed for a different home aesthetic.</p>
-      <div class="colour-swatches">
-        <div class="swatch reveal" style="background:#1A1A1A;">
-          <span class="swatch-name">Obsidian Black</span>
-          <span class="swatch-tag">Launch SKU &middot; Modern kitchens</span>
-        </div>
-        <div class="swatch reveal" style="background:#8A6E5A;transition-delay:0.08s">
-          <span class="swatch-name">Warm Terracotta</span>
-          <span class="swatch-tag">Launch SKU &middot; Boho &amp; farmhouse</span>
-        </div>
-        <div class="swatch reveal" style="background:#5A6B52;transition-delay:0.16s">
-          <span class="swatch-name">Sage Green</span>
-          <span class="swatch-tag">Month 3 &middot; Organic &amp; Pinterest-core</span>
-        </div>
-        <div class="swatch reveal" style="background:#C8C0B0;transition-delay:0.24s">
-          <span class="swatch-name" style="color:#2C2C2A;">Linen Grey</span>
-          <span class="swatch-tag" style="color:rgba(44,44,42,0.42);">Month 3 &middot; Scandi &amp; minimalist</span>
+  <!-- GIFT | gift.png — 1200x1500px, 4:5 portrait -->
+  <div class="gift-section" id="gift">
+    <div class="gift-inner">
+      <div class="gift-img-side">
+        <img src="gift.png?v=1" alt="Hearth Stoveside Set — The Perfect Kitchen Gift">
+      </div>
+      <div class="gift-text-side">
+        <div class="gift-label reveal">03 &mdash; Give the Gift of Better Cooking</div>
+        <h2 class="gift-heading reveal">The kitchen gift<br>they&rsquo;ll <em>actually use.</em></h2>
+        <p class="gift-body reveal">Premium packaging that looks as considered as what&rsquo;s inside. For the person who takes cooking seriously &mdash; or wants to start.</p>
+        <ul class="gift-reasons reveal">
+          <li>Premium gift-ready box &mdash; no extra wrapping needed</li>
+          <li>5 essential tools in one complete, cohesive set</li>
+          <li>Food-grade silicone &mdash; safe, durable, non-toxic</li>
+          <li>Order directly on Amazon</li>
+          <li>Something they&rsquo;ll reach for every single day</li>
+        </ul>
+        <div class="reveal">
+          <a class="gift-btn" href="https://www.amazon.com/dp/B0GVXTNQ2Q" target="_blank" rel="noopener">Buy as a Gift &mdash; $34.99</a>
+          <div class="gift-occasions">
+            <span class="occasion-tag">Housewarming</span>
+            <span class="occasion-tag">Birthday</span>
+            <span class="occasion-tag">Wedding</span>
+            <span class="occasion-tag">Mother&rsquo;s Day</span>
+            <span class="occasion-tag">Holiday</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CTA -->
+  <!-- FINAL CTA -->
   <div class="cta-section">
     <div class="cta-inner">
       <p class="cta-label reveal">Available on Amazon</p>
       <h2 class="cta-heading reveal">Your kitchen just got<br>a little more <em>considered.</em></h2>
-      <p class="cta-body reveal">The Stoveside Set. 5 pieces. Premium packaging. Ships fast from Amazon FBA.</p>
-      <a class="cta-btn reveal" href="https://www.amazon.ca" target="_blank" rel="noopener">Shop Now &mdash; $29.99 on Amazon</a>
+      <p class="cta-body reveal">The Stoveside Set. 5 pieces. Premium packaging. Available on Amazon.</p>
+      <a class="cta-btn reveal" href="https://www.amazon.com/dp/B0GVXTNQ2Q" target="_blank" rel="noopener">Shop Now &mdash; $34.99 on Amazon</a>
     </div>
   </div>
 
-  <!-- FOOTER -->
+  <!-- FOOTER | logo.png — 400x200px, transparent PNG -->
   <footer>
-    <div class="footer-wordmark">
-      <svg style="width:9px;height:16px;flex-shrink:0;" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 1C5 1 9 6 9 11C9 14.3 7.2 16.5 5 17C2.8 16.5 1 14.3 1 11C1 6 5 1 5 1Z" fill="#C4724A" opacity="0.9"/>
-        <path d="M5 7C5 7 7 10 7 12.5C7 14 6.1 15 5 15.3C3.9 15 3 14 3 12.5C3 10 5 7 5 7Z" fill="#F6F1E8" opacity="0.4"/>
-      </svg>
-      Hearth Kitchenware
+    <div class="footer-top">
+      <a href="#"><img class="footer-logo" src="logo.png?v=1" alt="Hearth Kitchenware"></a>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/hearthkitchenware/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+          </svg>
+          @hearthkitchenware
+        </a>
+        <a href="https://www.tiktok.com/@hearthkitchenware?lang=en" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.67a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+          @hearthkitchenware
+        </a>
+        <a href="https://www.amazon.com/dp/B0GVXTNQ2Q" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.958 10.09c0 1.232.029 2.256-.591 3.351-.502.891-1.301 1.438-2.186 1.438-1.214 0-1.922-.924-1.922-2.292 0-2.692 2.415-3.182 4.699-3.182v.685zm3.186 7.705a.66.66 0 01-.76.074c-1.067-.887-1.257-1.3-1.842-2.147-1.761 1.796-3.008 2.334-5.291 2.334-2.701 0-4.804-1.667-4.804-5.004 0-2.607 1.412-4.383 3.424-5.252 1.742-.772 4.174-.91 6.031-1.123v-.419c0-.77.06-1.68-.392-2.347-.395-.597-1.152-.844-1.818-.844-1.235 0-2.337.632-2.606 1.941-.055.292-.272.58-.573.595l-3.201-.346c-.269-.061-.569-.278-.491-.691.734-3.871 4.231-5.037 7.361-5.037 1.601 0 3.694.426 4.956 1.638 1.601 1.495 1.447 3.49 1.447 5.659v5.121c0 1.54.639 2.217 1.239 3.048.21.294.257.648-.012.867l-2.668 2.233z"/></svg>
+          Amazon
+        </a>
+      </div>
     </div>
-    <span class="footer-tagline">Every detail matters.</span>
-    <div class="footer-links">
-      <a href="https://www.amazon.ca" target="_blank" rel="noopener">Amazon CA</a>
-      <a href="https://www.amazon.com" target="_blank" rel="noopener">Amazon US</a>
-      <a href="mailto:hello@hearthkitchen.com">Contact</a>
+    <div class="footer-bottom">
+      <span class="footer-tagline">Every detail matters.</span>
+      <div class="footer-links">
+        <a href="https://www.amazon.com/dp/B0GVXTNQ2Q" target="_blank" rel="noopener">Amazon</a>
+        <a href="https://www.instagram.com/hearthkitchenware/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@hearthkitchenware?lang=en" target="_blank" rel="noopener">TikTok</a>
+        <a href="mailto:kazi@hearthkitchenware.com">Contact</a>
+      </div>
     </div>
   </footer>
 
@@ -505,15 +664,10 @@
     });
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(function(el) {
-      observer.observe(el);
-    });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
   </script>
 </body>
 </html>
